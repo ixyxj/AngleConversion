@@ -20,6 +20,9 @@ public class AngleUtilUnitTest {
         System.out.println(AngleUtil.degToSixagesimalStr("0.00000000"));
         System.out.println(AngleUtil.degToSixagesimalStr("0.000000000"));
         System.out.println(AngleUtil.degToSixagesimalStr("0.0000000000"));
+        System.out.println(AngleUtil.degToSixagesimalStr("-1.100020000"));
+        System.out.println(AngleUtil.degToSixagesimalStr("-0.10020000"));
+        System.out.println(AngleUtil.degToSixagesimalStr("-0.000220000"));
         System.out.println(AngleUtil.degToSixagesimalStr("1.100020000"));
         System.out.println(AngleUtil.degToSixagesimalStr("1.10020000"));
         System.out.println(AngleUtil.degToSixagesimalStr("1.10220000"));

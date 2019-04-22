@@ -2,6 +2,7 @@ package com.ixyxj.utils.angle;
 
 import android.support.annotation.NonNull;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +21,27 @@ public class NumberUtil {
      * @return
      */
     public static int getAccuracy(double angdeg) throws AngleConverException {
-        return getAccuracy(String.valueOf(angdeg));
+        return getAccuracy(convertSci(angdeg));
+    }
+
+    /**
+     * 转换科学计数器
+     *
+     * @param numStr
+     * @return
+     */
+    public static String convertSci(String numStr) {
+        return new BigDecimal(numStr).toString();
+    }
+
+    /**
+     * 科学计数
+     *
+     * @param num
+     * @return
+     */
+    public static String convertSci(double num) {
+        return new BigDecimal(num).toString();
     }
 
     /**
@@ -44,6 +65,7 @@ public class NumberUtil {
      * @return
      */
     public static int getAccuracy(String angdegStr) throws AngleConverException {
+        angdegStr = convertSci(angdegStr);
         if (!isNumber(angdegStr)) {
             throw new AngleConverException("it is not a number");
         }

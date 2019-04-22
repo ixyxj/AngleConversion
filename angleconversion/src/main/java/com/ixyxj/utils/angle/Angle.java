@@ -6,42 +6,35 @@ import android.os.Parcelable;
 /**
  * created by ixyxj on 2019/4/11 22:16
  * 角度单位，度分秒
+ * 新增符号
  */
 public class Angle implements Parcelable {
     private int degree;
     private int minute;
     private double second;
     private int accuracy;   //精度
+    private boolean isNegative; //
+
 
     public Angle() {
     }
 
     public Angle(int degree, int minute,
-                 double second, int accuracy) {
+                 double second, int accuracy, boolean isNegative) {
         this.degree = degree;
         this.minute = minute;
         this.second = second;
         this.accuracy = accuracy;
+        this.isNegative = isNegative;
     }
 
-    protected Angle(Parcel in) {
-        degree = in.readInt();
-        minute = in.readInt();
-        second = in.readDouble();
-        accuracy = in.readInt();
+    public boolean isNegative() {
+        return isNegative;
     }
 
-    public static final Creator<Angle> CREATOR = new Creator<Angle>() {
-        @Override
-        public Angle createFromParcel(Parcel in) {
-            return new Angle(in);
-        }
-
-        @Override
-        public Angle[] newArray(int size) {
-            return new Angle[size];
-        }
-    };
+    public void setNegative(boolean negative) {
+        isNegative = negative;
+    }
 
     public int getDegree() {
         return degree;
@@ -99,6 +92,27 @@ public class Angle implements Parcelable {
         return degree + "." + minute + intValue + shortValue;
     }
 
+
+    protected Angle(Parcel in) {
+        degree = in.readInt();
+        minute = in.readInt();
+        second = in.readDouble();
+        accuracy = in.readInt();
+        isNegative = in.readByte() != 0;
+    }
+
+    public static final Creator<Angle> CREATOR = new Creator<Angle>() {
+        @Override
+        public Angle createFromParcel(Parcel in) {
+            return new Angle(in);
+        }
+
+        @Override
+        public Angle[] newArray(int size) {
+            return new Angle[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -110,5 +124,6 @@ public class Angle implements Parcelable {
         dest.writeInt(minute);
         dest.writeDouble(second);
         dest.writeInt(accuracy);
+        dest.writeByte((byte) (isNegative ? 1 : 0));
     }
 }

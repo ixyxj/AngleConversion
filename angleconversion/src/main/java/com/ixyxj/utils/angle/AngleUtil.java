@@ -150,7 +150,8 @@ public class AngleUtil {
                 }
                 break;
         }
-        return String.format(Locale.getDefault(), format, angle.getDegree()
+        String symbol = angle.isNegative() ? "-" : "";
+        return symbol + String.format(Locale.getDefault(), format, angle.getDegree()
                 , angle.getMinute(), strSecond.toString());
     }
 
@@ -210,11 +211,13 @@ public class AngleUtil {
      * @return
      */
     public static Angle toAngle(double angdeg, int accuracy) throws AngleConverException {
+        boolean isNegative = angdeg < 0;
+        angdeg = Math.abs(angdeg);
         int degree = (int) angdeg;
         double minuteDouble = (angdeg - degree) * 60d;
         int minute = (int) minuteDouble;
         double second = (minuteDouble - minute) * 60d;
-        return new Angle(degree, minute, second, accuracy == -1 ? NumberUtil.getAccuracy(angdeg) : accuracy);
+        return new Angle(degree, minute, second, accuracy == -1 ? NumberUtil.getAccuracy(angdeg) : accuracy, isNegative);
     }
 
     /**

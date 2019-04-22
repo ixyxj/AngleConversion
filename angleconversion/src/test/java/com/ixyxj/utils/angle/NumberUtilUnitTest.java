@@ -2,10 +2,21 @@ package com.ixyxj.utils.angle;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
 /**
  * created by ixyxj on 2019/4/1 21:18
  */
 public class NumberUtilUnitTest {
+
+    @Test
+    public void testConvert() {
+        System.out.println(NumberUtil.convertSci("4.99958333E7"));
+        System.out.println(new BigDecimal("4.99958333E7").toString());
+        System.out.println(new BigDecimal("4.99958333E7").toEngineeringString());
+        System.out.println(new BigDecimal("4.99958333E7").toPlainString());
+    }
 
     @Test
     public void testFormat() {
@@ -24,6 +35,7 @@ public class NumberUtilUnitTest {
         System.out.println(Math.floor(1.00000000011));
         System.out.println(Math.floor(1.09900000099));
         System.out.println(NumberUtil.isNumber("001"));
+        System.out.println(NumberUtil.isNumber("-0.000220000"));
         System.out.println(NumberUtil.isNumber("1."));
         System.out.println(NumberUtil.isNumber("00.00"));
         System.out.println(NumberUtil.isNumber("0.000000000"));
