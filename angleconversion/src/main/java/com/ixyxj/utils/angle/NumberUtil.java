@@ -20,28 +20,8 @@ public class NumberUtil {
      * @param angdeg
      * @return
      */
-    public static int getAccuracy(double angdeg) throws AngleConverException {
-        return getAccuracy(convertSci(angdeg));
-    }
-
-    /**
-     * 转换科学计数器
-     *
-     * @param numStr
-     * @return
-     */
-    public static String convertSci(String numStr) {
-        return new BigDecimal(numStr).toString();
-    }
-
-    /**
-     * 科学计数
-     *
-     * @param num
-     * @return
-     */
-    public static String convertSci(double num) {
-        return new BigDecimal(num).toString();
+    public static int getAccuracy(double angdeg) throws AngleConversionException {
+        return getAccuracy(String.valueOf(angdeg));
     }
 
     /**
@@ -50,9 +30,9 @@ public class NumberUtil {
      * @param d
      * @return
      */
-    public static double getDecimal(String d) throws AngleConverException {
+    public static double getDecimal(String d) throws AngleConversionException {
         if (!isNumber(d)) {
-            throw new AngleConverException("it is not a number");
+            throw new AngleConversionException("it is not a number");
         }
         int index = d.lastIndexOf(".");
         return index > 0 ? convertTodouble(d.substring(Math.min(index, d.length())), 0) : 0;
@@ -64,10 +44,10 @@ public class NumberUtil {
      * @param angdegStr
      * @return
      */
-    public static int getAccuracy(String angdegStr) throws AngleConverException {
+    public static int getAccuracy(String angdegStr) throws AngleConversionException {
         angdegStr = convertSci(angdegStr);
         if (!isNumber(angdegStr)) {
-            throw new AngleConverException("it is not a number");
+            throw new AngleConversionException("it is not a number");
         }
         int index = angdegStr.lastIndexOf(".");
         return index > 0 ? angdegStr.substring(Math.min(index + 1, angdegStr.length())).length() : 0;
@@ -85,7 +65,7 @@ public class NumberUtil {
         return format(value, decimal);
     }
 
-    public static double formatDoudble(double num, int decimal) {
+    public static double formatDouble(double num, int decimal) {
         String value = String.valueOf(num);
         return convertTodouble(format(value, decimal), 0);
     }
@@ -164,6 +144,43 @@ public class NumberUtil {
     public static boolean isDigit(char c) {
         return Character.isDigit(c);
     }
+
+    /**
+     * 将科学计数转换成正常数字
+     *
+     * @param num
+     * @param accuracy
+     * @return
+     */
+    public static String convertSci(double num, int accuracy) {
+        return convertSci(String.valueOf(num), accuracy);
+    }
+
+    public static String convertSci(String numStr, int accuracy) {
+        String str = new BigDecimal(numStr).toPlainString();
+        return format(str, accuracy);
+    }
+
+    /**
+     * 转换科学计数器
+     *
+     * @param numStr
+     * @return
+     */
+    public static String convertSci(String numStr) {
+        return new BigDecimal(numStr).toString();
+    }
+
+    /**
+     * 科学计数
+     *
+     * @param num
+     * @return
+     */
+    public static String convertSci(double num) {
+        return new BigDecimal(num).toString();
+    }
+
 
     /**
      * 暂时不用

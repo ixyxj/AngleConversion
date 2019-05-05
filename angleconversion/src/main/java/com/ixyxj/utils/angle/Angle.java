@@ -79,7 +79,7 @@ public class Angle implements Parcelable {
                 minute = 0;
                 degree += 1;
             }
-        } catch (AngleConverException e) {
+        } catch (AngleConversionException e) {
             e.printStackTrace();
         }
     }

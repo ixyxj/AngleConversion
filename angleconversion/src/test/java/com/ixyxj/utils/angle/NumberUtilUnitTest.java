@@ -3,7 +3,6 @@ package com.ixyxj.utils.angle;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 /**
  * created by ixyxj on 2019/4/1 21:18
@@ -49,7 +48,7 @@ public class NumberUtilUnitTest {
     }
 
     @Test
-    public void testStr2Angle() throws AngleConverException {
+    public void testStr2Angle() throws AngleConversionException {
         System.out.println(AngleUtil.strToAngle("1.0100000000001").getDegree());
         System.out.println(AngleUtil.strToAngle("1.1000000000001").getMinute());
         System.out.println(AngleUtil.strToAngle("1.0100000000001").getSecond());
