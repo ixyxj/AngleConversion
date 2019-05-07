@@ -61,13 +61,11 @@ public class NumberUtil {
      * @return
      */
     public static String format(double num, int decimal) {
-        String value = String.valueOf(num);
-        return format(value, decimal);
+        return format(convertSci(num), decimal);
     }
 
     public static double formatDouble(double num, int decimal) {
-        String value = String.valueOf(num);
-        return convertTodouble(format(value, decimal), 0);
+        return convertTodouble(format(num, decimal), 0);
     }
 
     /**
@@ -168,7 +166,7 @@ public class NumberUtil {
      * @return
      */
     public static String convertSci(String numStr) {
-        return new BigDecimal(numStr).toString();
+        return new BigDecimal(numStr).toPlainString();
     }
 
     /**
@@ -178,7 +176,7 @@ public class NumberUtil {
      * @return
      */
     public static String convertSci(double num) {
-        return new BigDecimal(num).toString();
+        return new BigDecimal(num).toPlainString();
     }
 
 
