@@ -167,7 +167,7 @@ public class AngleUtil {
                 format = "%d°%02d′";
                 break;
             case 2://0°00′00″
-                strSecond = new StringBuilder(strSecond.substring(0, strSecond.length() - 2));
+                strSecond = new StringBuilder(strSecond.substring(0, 2));
                 break;
             default://0°00′00.0″ => 3
                 int real = accuracy - 2;
