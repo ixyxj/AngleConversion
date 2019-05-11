@@ -48,21 +48,20 @@ public class AngleUtilUnitTest {
 
     @Test
     public void testStrFormat() throws AngleConversionException {
-        System.out.println(AngleUtil.degToHexadecimalStr(12.121212121));
-        System.out.println(AngleUtil.parseToHexadecimalStr(12.121212121 + ""));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0."));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.0"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.00"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.00000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.000000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.00000000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.000000000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000000000"));
-        System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 1));
-        System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 2));
+//        System.out.println(AngleUtil.parseToHexadecimalStr( "12.121212121"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.0"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.00"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.00000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.000000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.00000000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.000000000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("0.0000000000"));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 1));
+//        System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 2));
         System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 3));
         System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 4));
         System.out.println(AngleUtil.parseToHexadecimalStr("25.5959999", 5));
@@ -78,5 +77,11 @@ public class AngleUtilUnitTest {
         System.out.println(AngleUtil.parseToHexadecimalStr("25.1212120", 6));
         System.out.println(AngleUtil.parseToHexadecimalStr("25.1212120", 7));
         System.out.println(AngleUtil.parseToHexadecimalStr("25.1212120", 8));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.1"));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.01"));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.001"));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.0001"));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.00001"));
+        System.out.println(AngleUtil.parseToHexadecimalStr("0.000001"));
     }
 }

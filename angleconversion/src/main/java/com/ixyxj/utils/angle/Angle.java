@@ -72,23 +72,19 @@ public class Angle implements Parcelable {
      * 秒大于60, 分进一
      */
     public void addOne() {
-        try {
-            second = NumberUtil.getDecimal(second + "");
-            minute += 1;
-            if (minute >= 60) {
-                minute = 0;
-                degree += 1;
-            }
-        } catch (AngleConversionException e) {
-            e.printStackTrace();
+        second = 0;
+        minute += 1;
+        if (minute >= 60) {
+            minute = 0;
+            degree += 1;
         }
     }
 
-    public String toString(){
+    public String toString() {
         String secondStr = String.valueOf(second);
         int start = secondStr.indexOf(".");
-        String intValue = secondStr.substring(0 , start);
-        String shortValue = secondStr.substring(start + 1 , secondStr.length());
+        String intValue = secondStr.substring(0, start);
+        String shortValue = secondStr.substring(start + 1, secondStr.length());
         return degree + "." + minute + intValue + shortValue;
     }
 

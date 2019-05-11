@@ -77,7 +77,7 @@ public class NumberUtil {
      */
     @NonNull
     public static String format(String value, int decimal) {
-        if (isInteger(value)) return "";
+        if (isInteger(value)) return value;
         int index = value.indexOf(".");
         String integer = value.substring(0, index == -1 ? 0 : index);
         int length = integer.length();

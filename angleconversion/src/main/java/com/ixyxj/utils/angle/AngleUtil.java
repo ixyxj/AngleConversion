@@ -201,10 +201,7 @@ public class AngleUtil {
             if (second >= 60) {
                 //进一
                 angle.addOne();
-                // 防止format再次进一
-                second = NumberUtil.convertTodouble(String.valueOf(angle.getSecond()).substring(0, accuracy), 0);
             }
-            return second;
         }
         return angle.getSecond();
     }
@@ -296,7 +293,6 @@ public class AngleUtil {
         int realAccuracy = 0;
         if (index > 0) {//有小数
             a.setDegree(Integer.valueOf(angdegStr.substring(0, index)));
-            realAccuracy++;
             //分
             int end = Math.min(index + 1 + 2, angdegStr.length());
             //11.11111
@@ -306,23 +302,26 @@ public class AngleUtil {
                 a.setMinute(Integer.valueOf(minute));
                 realAccuracy++;
             }
-
             if (end < angdegStr.length()) {
                 String secondStr = angdegStr.substring(end);
                 if (secondStr.length() == 1) secondStr += 0;
+                double second = Double.valueOf(secondStr);
+                realAccuracy++;
                 if (secondStr.length() == 2 && !(Integer.valueOf(secondStr) < 60)) {
-                    realAccuracy++;
-                    a.setSecond(Double.valueOf(secondStr));
+                    //ignore
                 } else if (Integer.valueOf(secondStr.substring(0, Math.min(2, secondStr.length()))) > 60) {
                     //12.5959999
-                    double second = Double.valueOf(secondStr) / Math.pow(10, secondStr.length() - 1);
-                    realAccuracy = NumberUtil.getAccuracy(second) + 1;
-                    a.setSecond(second);
+                    second = second / Math.pow(10, secondStr.length() - 1);
+                    realAccuracy = NumberUtil.getAccuracy(second);
                 } else {
-                    double second = Double.valueOf(secondStr) / Math.pow(10, secondStr.length() - Math.min(2, secondStr.length()));
-                    realAccuracy += NumberUtil.getAccuracy(second);
-                    a.setSecond(second);
+                    if (second == 0) {
+                        realAccuracy += secondStr.length() - 2;
+                    } else {
+                        second = second / Math.pow(10, secondStr.length() - Math.min(2, secondStr.length()));
+                        realAccuracy += NumberUtil.getAccuracy(second);
+                    }
                 }
+                a.setSecond(second);
             }
         } else {
             a.setDegree(Integer.valueOf(angdegStr));
