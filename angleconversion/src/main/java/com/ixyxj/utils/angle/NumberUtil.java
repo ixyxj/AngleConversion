@@ -50,7 +50,11 @@ public class NumberUtil {
             throw new AngleConversionException("it is not a number");
         }
         int index = angdegStr.lastIndexOf(".");
-        return index > 0 ? angdegStr.substring(Math.min(index + 1, angdegStr.length())).length() : 0;
+        if (index > 0) {
+            if (angdegStr.endsWith("0")) angdegStr = angdegStr.substring(0, angdegStr.length() - 1);
+            return angdegStr.substring(Math.min(index + 1, angdegStr.length())).length();
+        }
+        return 0;
     }
 
     /**

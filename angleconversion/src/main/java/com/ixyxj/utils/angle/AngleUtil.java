@@ -181,7 +181,8 @@ public class AngleUtil {
                         strSecond.insert(0, "0");
                     }
                 } else {
-                    int num = real - secondAccuracy;
+                    if (real > 2) real++;
+                    int num = real - secondAccuracy - 1;
                     for (int i = 0; i < num; i++) {
                         strSecond.append(0);
                     }
@@ -306,19 +307,20 @@ public class AngleUtil {
                 String secondStr = angdegStr.substring(end);
                 if (secondStr.length() == 1) secondStr += 0;
                 double second = Double.valueOf(secondStr);
-                realAccuracy++;
                 if (secondStr.length() == 2 && !(Integer.valueOf(secondStr) < 60)) {
-                    //ignore
+                    realAccuracy++;
                 } else if (Integer.valueOf(secondStr.substring(0, Math.min(2, secondStr.length()))) > 60) {
                     //12.5959999
-                    second = second / Math.pow(10, secondStr.length() - 1);
+                    second = second / Math.pow(10, secondStr.length() - 2);
                     realAccuracy = NumberUtil.getAccuracy(second);
                 } else {
                     if (second == 0) {
-                        realAccuracy += secondStr.length() - 2;
+                        realAccuracy += secondStr.length() - 1;
                     } else {
+                        realAccuracy++;
                         second = second / Math.pow(10, secondStr.length() - Math.min(2, secondStr.length()));
-                        realAccuracy += NumberUtil.getAccuracy(second);
+                        //排除整数情况
+                        if ((int)second != second) realAccuracy += NumberUtil.getAccuracy(second);
                     }
                 }
                 a.setSecond(second);
